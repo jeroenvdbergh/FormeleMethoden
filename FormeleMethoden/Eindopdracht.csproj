@@ -1,0 +1,3448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{04E97E7D-66F8-42F3-840A-531356721A13}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eindopdracht</RootNamespace>
+    <AssemblyName>Eindopdracht</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Automata.cs" />
+    <Compile Include="Graphviz.cs" />
+    <Compile Include="MainGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainGUI.Designer.cs">
+      <DependentUpon>MainGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NDFAandDFA\DFA.cs" />
+    <Compile Include="NDFAandDFA\Toestand.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ReguliereExpressie\Expressie.cs" />
+    <Compile Include="ReguliereGrammatica\Grammatica.cs" />
+    <Compile Include="NDFAandDFA\NDFA.cs" />
+    <Compile Include="ReguliereGrammatica\ProductieRegel.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReguliereGrammatica\Transition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Conversie\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainGUI.resx">
+      <DependentUpon>MainGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\account_book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alarm-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_upload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bin_full.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bin_full-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bin_full-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bin_full-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bin-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bin-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bin-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bin-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bin-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bin-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bin-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_open-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_open-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_open-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_open-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_open-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_open-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_open-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_open-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_open-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_open-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_open-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_open-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\burn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_selection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_selection_day.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_selection_month.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_selection_week.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clip_copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clip_cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clip_paste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comment-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comment-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comment-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comment-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comment-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comment-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comment-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comment-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer_browse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_calculus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_color_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_color_blue-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_color_blue-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_color_blue-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_color_blue-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_color_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_color_green-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_color_green-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_color_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_color_red-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_color_red-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_color_red-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-add2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-arrow_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-arrow_leftright.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-arrow_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-arrow_updown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-control_pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-control_play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-control_record.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-control_stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-delete2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-favorite2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-remove2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_flat-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_font.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_landscape.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_note-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_note-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_note-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_note-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_note-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_note-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_note-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_note-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_note-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_note-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_note-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_note-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_spreadsheet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_spreadsheet-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_spreadsheet-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_spreadsheet-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_spreadsheet-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_spreadsheet-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_spreadsheet-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_spreadsheet-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_spreadsheet-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_spreadsheet-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_spreadsheet-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_spreadsheet-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_spreadsheet-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_stack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text_image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text_image-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text_image-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text_image-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text_image-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text_image-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text_image-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text_image-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text_image-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text_image-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text_image-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text_image-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text_image-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_text-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-add2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-arrow_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-arrow_leftright.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-arrow_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-arrow_updown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-control_pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-control_play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-control_record.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-control_stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-delete2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-favorite2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-remove2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\door_out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\favorite2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_blue-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_blue-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_blue-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_blue-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_blue-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_blue-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_browse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\font.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\full_screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\full_screen2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\games.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globe_browse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hard_disk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\health.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\history.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\install.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\internet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\internet_browse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\light_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\light_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\magic_wand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_open-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_open-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_open-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_open-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_open-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_open-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_open-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_open-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_open-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_open-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_open-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_open-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nav_blue_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nav_blue_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nav_blue_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nav_blue_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nav_green_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nav_green_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nav_green_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nav_green_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\network_application.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\network_computer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\network_database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\network_document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\network_folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\network_printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note_text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad_open-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad_open-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad_open-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad_open-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad_open-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad_open-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad_open-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad_open-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notepad-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes_text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\options.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\organization.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\organization-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\organization-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\organization-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\organization-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\organization-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\organization-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\organization-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page_white_excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picture-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picture-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picture-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picture-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picture-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picture-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picture-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pictures.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picture-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piece.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piece-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piece-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piece-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piece-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piece-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piece-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\piece-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pin_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pin_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pin_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_setup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-control_pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-control_play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-control_stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reload_rotate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rename.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\replace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_open-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_open-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_open-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_open-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_open-export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_open-import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_open-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_open-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_open-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_open-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_as.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\screen-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\screen-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\screen-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\screen-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\screen-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\screen-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\screen-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\secure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\secure_err.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\secure_ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\secure-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\secure-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\secure-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\secure-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\secure-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\secure-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\secure-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\security_lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\security_lock-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\security_lock-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\security_lock-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\security_lock-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\security_lock-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\security_lock-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\security_lock-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\security_unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\select_all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\select_invert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\select_none.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_basket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_basket-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_basket-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_basket-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_basket-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_basket-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_basket-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_basket-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_cart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_cart-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_cart-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_cart-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_cart-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_cart-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_cart-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_cart-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smiley_angry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smiley_happy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smiley_kiss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smiley_laugh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smiley_love.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smiley_sad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smiley_wink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\social_facebook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\social_rss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\social_share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\social_twitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sort.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sort_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sort_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sort2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spell_check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stats.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\symbol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabs-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabs-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabs-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabs-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabs-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabs-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabs-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabs-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabs-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabs-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabs-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tabs-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_horizontal-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_horizontal-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_horizontal-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_horizontal-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_horizontal-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_horizontal-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_horizontal-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_horizontal-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_horizontal-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_horizontal-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_horizontal-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\task-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tool_brush.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tool_pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tool_ruler.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tool_ruler2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tools.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uninstall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_id.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_id-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_id-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_id-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_id-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_id-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_id-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_id-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_id-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-edit1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view_details.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view_large_icons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view_list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view_medium_icons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view_options.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view_small_icons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\views.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\views-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\views-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\views-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\views-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\views-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\views-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\views-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_arrange_horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_arrange_vertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_create.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_fonts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_hide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_panel_bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_panel_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_panel_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_panel_top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_sel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_separate_horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_separate_vertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_show_hide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_split.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_spreadsheet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_wizard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_word_processing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-execute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-share.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-warn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zip_compress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoom_in.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoom_out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="graph.dll" />
+    <Content Include="gvc.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

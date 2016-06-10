@@ -4,102 +4,107 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FormeleMethoden
+namespace Eindopdracht
 {
-    class Automata
+    public class Automata<T>
     {
-        private List<string> symbols = new List<string>();
-        private List<string> startStates = new List<string>();
-        private List<string> finalStates = new List<string>();
-        private List<Transition> transitions = new List<Transition>();
+        private HashSet<Transition<T>> transitions;
+
+        private SortedSet<T> states;
+        private SortedSet<T> startStates;
+        private SortedSet<T> finalStates;
+        private SortedSet<char> symbols;
 
         public Automata()
         {
-            Console.WriteLine("Initialize your Automata, if you need help type help");
-
-            Main();
+            transitions = new HashSet<Transition<T>>();
+            states = new SortedSet<T>();
+            startStates = new SortedSet<T>();
+            finalStates = new SortedSet<T>();
+            this.symbols = new SortedSet<char>();
         }
 
-        public Automata(List<string> alphabet)
+        public Automata(char[] s)
         {
-            this.symbols = alphabet;
+            transitions = new HashSet<Transition<T>>();
+            states = new SortedSet<T>();
+            startStates = new SortedSet<T>();
+            finalStates = new SortedSet<T>();
+            setAlphabet(s);
         }
 
-        public void Main()
+        public Automata(SortedSet<char> symbols)
         {
-            switch (Console.ReadLine())
-            {
-                case "print":
-                    PrintCollection();
-                    break;
-                case "help":
-                    Help();
-                    break;
-                case "init":
-                    Init();
-                    break;
-
-                default:
-                    Console.WriteLine("Command not recognized");
-                    break;
-            }
-            Console.ReadLine();
-            Main();
+            transitions = new HashSet<Transition<T>>();
+            states = new SortedSet<T>();
+            startStates = new SortedSet<T>();
+            finalStates = new SortedSet<T>();
+            this.symbols = symbols;
         }
 
-        public void Init()
+        public void setAlphabet(char[] s)
         {
-            Console.WriteLine("Initializing collection");
-            Console.WriteLine("Fill in the alpabetic letters one by one followed by an enter, if you're done type 'end'");
-            SetAlphabet();
-            Console.WriteLine("Alphabet is now set");
-            Main();
-
-
+            this.symbols = new SortedSet<char>(s);
         }
 
-        public void SetAlphabet()
-        {            
-            //Check if string is null or empty
-            while (true)
-            {
-                string input = Console.ReadLine();
-
-                if (input == "end")
-                {                   
-                    break;
-                }
-
-                symbols.Add(input);
-            }
-        }
-
-        public void AddTransition(Transition transition)
+        public void addTransition(Transition<T> t)
         {
-            transitions.Add(transition);
+            transitions.Add(t);
+            states.Add(t.getFromState());
+            states.Add(t.getToState());
         }
 
-        public void PrintCollection()
+        public void defineAsStartState(T t)
         {
-            foreach (string x in symbols)
-            {
-                Console.WriteLine(x);
-            }
-        }
-
-        public void Help()
-        {
-
-        }
-
-        public void DefineAsStartState(string t)
-        {
+            // if already in states no problem because a Set will remove duplicates.
+            states.Add(t);
             startStates.Add(t);
         }
 
-        public void DefineAsFinalState(string t)
+        public void defineAsFinalState(T t)
         {
+            // if already in states no problem because a Set will remove duplicates.
+            states.Add(t);
             finalStates.Add(t);
+        }
+
+        public void printTransitions()
+        {
+            foreach(Transition<T> t in transitions)
+            {
+                Console.WriteLine(t.toString());
+            }
+        }
+
+        public bool isDFA()
+        {
+            bool isDFA = true;        
+            foreach (T from in states)
+            {
+                foreach (char symbol in symbols)
+                {
+                    isDFA = isDFA && getToStates(from, symbol).Count() == 1;
+                }
+            }
+            return isDFA;
+        }
+
+        public SortedSet<T> getToStates(T from, char symbol)
+        {
+            // not yet correct: No shit!
+            SortedSet<T> reachable = new SortedSet<T>();          
+
+            return reachable;
+
+        }
+
+        public SortedSet<T> epsilonClosure(SortedSet<T> fromStates)
+        {
+           SortedSet<T> reachable = new SortedSet<T>();
+           SortedSet<T> newFound = new SortedSet<T>();
+       
+            // not yet correct:
+           return reachable;
         }
     }
 }

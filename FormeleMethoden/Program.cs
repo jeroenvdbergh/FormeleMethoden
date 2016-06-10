@@ -1,59 +1,205 @@
-﻿using System;
+﻿using Eindopdracht.ReguliereExpressie;
+using Eindopdracht.NDFAAndDFA;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace FormeleMethoden
+namespace Eindopdracht
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
-            Console.WriteLine("type 'example' to run the test program or type 'manual' to start the manual configuration");
+            //var b = voorbeeldGrammatica();
+            //var c = voorbeeldExpressie();
+            //var d = voorbeelDFA();
+            //var e = voorbeeldNDFA();
+            //Console.WriteLine("expressie");
+            //Console.WriteLine(c.ToString());
+            //Console.WriteLine("expressie -> ndfa");
+            //Console.WriteLine(c.ToNDFA().ToString());
+            //Console.WriteLine("get language");
+            //Console.WriteLine(c.GetLanguage(3).ToString());
 
-            string input = Console.ReadLine();
+            //Console.WriteLine("grammatica");
+            //Console.WriteLine(b.ToString());
+            //Console.WriteLine("grammatica -> NDFA");
+            //Console.WriteLine(b.TransformToNDFA().ToString());
 
-            switch (input)
-            {
-                case "example":
-                    Example();
-                    break;
+            //Console.WriteLine("DFA");
+            //Console.WriteLine(d.ToString());
+            //Console.WriteLine("REVERSE DFA");
+            //Console.WriteLine(d.Reverse().ToString());
 
-                case "manual":
-                    new Automata();
-                    break;
-            }        
+            //Console.WriteLine("Minimaliseren DFA");
+            //Console.WriteLine(minimaliserenDFA().ToString());
+            //Console.WriteLine("Ontkenning");
+            //Console.WriteLine(d.Ontkenning().ToString());
+
+            //Console.WriteLine("NDFA");
+            //Console.WriteLine(e.ToString());
+            //Console.WriteLine("NDFA -> DFA");
+            //Console.WriteLine(e.ToDFA().ToString());
+            //Console.WriteLine("NDFA -> Reguliere Grammatica");
+            //Console.WriteLine(e.ToReguliereGrammatica().ToString());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainGUI());
+
+            Console.ReadLine();
         }
 
-        public static void Example()
+        static public NDFA<char> voorbeeldNDFA()
         {
-            List<string> alphabet = new List<string> { "a", "b" };
-            Automata m = new Automata(alphabet);
+            NDFA<char> ndfa = new NDFA<char>();
+            ndfa._invoerSymbolen = new HashSet<char>("ab".ToCharArray());
+            //waar je begint, volgende toestand, met letter
+            Toestand<char> t1 = new Toestand<char>("0", new Tuple<string, char>("1", 'a'));
+            Toestand<char> t2 = new Toestand<char>("1", new Tuple<string, char>("0", 'b'));
+            Toestand<char> t3 = new Toestand<char>("0", new Tuple<string, char>("0", 'b'));
+            Toestand<char> t4 = new Toestand<char>("0", new Tuple<string, char>("2", 'a'));
+            Toestand<char> t5 = new Toestand<char>("2", new Tuple<string, char>("1", 'b'));
+            Toestand<char> t6 = new Toestand<char>("2", new Tuple<string, char>("0", 'b'));
+            //Toestand<char> t7 = new Toestand<char>("2", new Tuple<string, char>("1", 'c'));
+            ndfa._toestanden.Add(t1);
+            ndfa._toestanden.Add(t2);
+            ndfa._toestanden.Add(t3);
+            ndfa._toestanden.Add(t4);
+            ndfa._toestanden.Add(t5);
+            ndfa._toestanden.Add(t6);
+            //ndfa.Toestanden.Add(t7);
+            ndfa._startSymbolen.Add("0");
+            ndfa._eindToestanden.Add("1");
+            return ndfa;
+        }
 
-            m.AddTransition(new Transition("q0", 'a', "q1"));
-            m.AddTransition(new Transition("q0", 'b', "q4"));
+        static public DFA<char> minimaliserenDFA()
+        {
+            //les 6 dia 14
+            DFA<char> dfa = new DFA<char>();
+            dfa._invoerSymbolen = new HashSet<char>("ab".ToCharArray());
+            Toestand<char> t1 = new Toestand<char>("0", new Tuple<string, char>("0", 'a'));
+            Toestand<char> t2 = new Toestand<char>("0", new Tuple<string, char>("1", 'b'));
+            Toestand<char> t3 = new Toestand<char>("1", new Tuple<string, char>("2", 'a'));
+            Toestand<char> t4 = new Toestand<char>("1", new Tuple<string, char>("1", 'b'));
+            Toestand<char> t5 = new Toestand<char>("2", new Tuple<string, char>("0", 'a'));
+            Toestand<char> t6 = new Toestand<char>("2", new Tuple<string, char>("3", 'b'));
+            Toestand<char> t7 = new Toestand<char>("3", new Tuple<string, char>("4", 'a'));
+            Toestand<char> t8 = new Toestand<char>("3", new Tuple<string, char>("2", 'b'));
+            Toestand<char> t9 = new Toestand<char>("4", new Tuple<string, char>("5", 'a'));
+            Toestand<char> t10 = new Toestand<char>("4", new Tuple<string, char>("3", 'b'));
+            Toestand<char> t11 = new Toestand<char>("5", new Tuple<string, char>("0", 'a'));
+            Toestand<char> t12 = new Toestand<char>("5", new Tuple<string, char>("3", 'b'));
+            dfa._toestanden.Add(t1);
+            dfa._toestanden.Add(t2);
+            dfa._toestanden.Add(t3);
+            dfa._toestanden.Add(t4);
+            dfa._toestanden.Add(t5);
+            dfa._toestanden.Add(t6);
+            dfa._toestanden.Add(t7);
+            dfa._toestanden.Add(t8);
+            dfa._toestanden.Add(t9);
+            dfa._toestanden.Add(t10);
+            dfa._toestanden.Add(t11);
+            dfa._toestanden.Add(t12);
+            dfa._startSymbolen.Add("0");
+            dfa._eindToestanden.Add("4");
+            return dfa.Minimalize();
+        }
 
-            m.AddTransition(new Transition("q1", 'a', "q4"));
-            m.AddTransition(new Transition("q1", 'b', "q2"));
+        static public DFA<char> voorbeelDFA()
+        {
+            DFA<char> dfa = new DFA<char>();
+            dfa._invoerSymbolen = new HashSet<char>("ab".ToCharArray());
+            Toestand<char> t1 = new Toestand<char>("0", new Tuple<string, char>("0", 'a'));
+            Toestand<char> t2 = new Toestand<char>("0", new Tuple<string, char>("1", 'b'));
+            Toestand<char> t3 = new Toestand<char>("1", new Tuple<string, char>("2", 'a'));
+            Toestand<char> t4 = new Toestand<char>("1", new Tuple<string, char>("1", 'b'));
+            Toestand<char> t5 = new Toestand<char>("2", new Tuple<string, char>("0", 'a'));
+            Toestand<char> t6 = new Toestand<char>("2", new Tuple<string, char>("3", 'b'));
+            Toestand<char> t7 = new Toestand<char>("3", new Tuple<string, char>("4", 'a'));
+            Toestand<char> t8 = new Toestand<char>("3", new Tuple<string, char>("2", 'b'));
+            Toestand<char> t9 = new Toestand<char>("4", new Tuple<string, char>("5", 'a'));
+            Toestand<char> t10 = new Toestand<char>("4", new Tuple<string, char>("3", 'b'));
+            Toestand<char> t11 = new Toestand<char>("5", new Tuple<string, char>("0", 'a'));
+            Toestand<char> t12 = new Toestand<char>("5", new Tuple<string, char>("3", 'b'));
+            dfa._toestanden.Add(t1);
+            dfa._toestanden.Add(t2);
+            dfa._toestanden.Add(t3);
+            dfa._toestanden.Add(t4);
+            dfa._toestanden.Add(t5);
+            dfa._toestanden.Add(t6);
+            dfa._toestanden.Add(t7);
+            dfa._toestanden.Add(t8);
+            dfa._toestanden.Add(t9);
+            dfa._toestanden.Add(t10);
+            dfa._toestanden.Add(t11);
+            dfa._toestanden.Add(t12);
+            dfa._startSymbolen.Add("0");
+            dfa._eindToestanden.Add("1");
+            return dfa;
+        }
 
-            m.AddTransition(new Transition("q2", 'a', "q3"));
-            m.AddTransition(new Transition("q2", 'b', "q4"));
+        static public Expressie voorbeeldExpressie()
+        {
+            return new Expressie("(ab(ab)*)*");
+        }
 
-            m.AddTransition(new Transition("q3", 'a', "q1"));
-            m.AddTransition(new Transition("q3", 'b', "q2"));
+        static public Grammatica<char> voorbeeldGrammatica()
+        {
+            Grammatica<char> gr = null;
+            ProductieRegel<char> p1 = new ProductieRegel<char>("A", 'a', "B");
+            ProductieRegel<char> p2 = new ProductieRegel<char>("A", 'b', "A");
+            ProductieRegel<char> p3 = new ProductieRegel<char>("B", 'a', "B");
+            ProductieRegel<char> p4 = new ProductieRegel<char>("B", 'b', "A");
+            ProductieRegel<char> p5 = new ProductieRegel<char>("A", '$', "C");
+            ProductieRegel<char> p6 = new ProductieRegel<char>("C", 'a', "B");
+            ProductieRegel<char> p7 = new ProductieRegel<char>("C", 'b', "A");
+            HashSet<ProductieRegel<char>> productieregels = new HashSet<ProductieRegel<char>>();
+            productieregels.Add(p2);
+            productieregels.Add(p1);
+            productieregels.Add(p5);
+            productieregels.Add(p3);
+            productieregels.Add(p4);
+            productieregels.Add(p6);
+            productieregels.Add(p7);
+            gr = new Grammatica<char>("A", productieregels);
+            return gr;
+        }
+
+        static public Automata<String> getExampleSlide8Lesson2()
+        {
+            char[] alphabet = { 'a', 'b' };
+            Automata<String> m = new Automata<String>(alphabet);
+
+            m.addTransition(new Transition<String>("0", 'a', "1"));
+            m.addTransition(new Transition<String>("0", 'b', "4"));
+
+            m.addTransition(new Transition<String>("1", 'a', "4"));
+            m.addTransition(new Transition<String>("1", 'b', "2"));
+
+            m.addTransition(new Transition<String>("2", 'a', "3"));
+            m.addTransition(new Transition<String>("2", 'b', "4"));
+
+            m.addTransition(new Transition<String>("3", 'a', "1"));
+            m.addTransition(new Transition<String>("3", 'b', "2"));
 
             // the error state, loops for a and b:
-            //m.addTransition(new Transition<String>("q4", 'a'));
-            //m.addTransition(new Transition<String>("q4", 'b'));
+            m.addTransition(new Transition<String>("4", 'a'));
+            m.addTransition(new Transition<String>("4", 'b'));
 
             // only on start state in a dfa:
-            m.DefineAsStartState("q0");
+            m.defineAsStartState("0");
 
             // two final states:
-            m.DefineAsFinalState("q2");
-            m.DefineAsFinalState("q3");
+            m.defineAsFinalState("2");
+            m.defineAsFinalState("3");
+
+            return m;
         }
-            
     }
 }
