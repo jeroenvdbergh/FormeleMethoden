@@ -22,7 +22,6 @@ namespace Eindopdracht
     public partial class MainGUI : Form
     {
         private NDFA<char> _outputNDFA = null;
-        private string output;
         List<Statement> statements = new List<Statement>();
 
         public MainGUI()
@@ -40,6 +39,8 @@ namespace Eindopdracht
                 {
                     Expressie expressie = new Expressie(InputBox.Text);
                     _outputNDFA = expressie.ToNDFA();
+
+                    statements.Clear();
 
                     if (ToDFA.Checked)
                     {
@@ -61,8 +62,6 @@ namespace Eindopdracht
 
                     foreach (var t in _outputNDFA._toestanden)
                     {
-                        Port port = new Port("label", CompassPoints.North);
-                        NodeId myId = new NodeId("label", port);
                         EdgeStatement statement = EdgeStatement.For(t._vorigeToestand, t._volgendeToestand.Item1).Set("label", t._volgendeToestand.Item2.ToString());
                         statements.Add(statement);
                     }          
@@ -233,16 +232,30 @@ namespace Eindopdracht
                 Graph graph = Graph.Undirected.AddRange(statements);
 
                 IRenderer renderer = new Renderer("C:\\Program Files (x86)\\Graphviz2.38\\bin");
-                using (Stream file = File.Create("graph.png"))
+
+                peGraph.Image = null;
+
+                using (Stream file = File.OpenWrite("graph.png"))
                 {
+                    
                     await renderer.RunAsync(
                         graph, file,
                         RendererLayouts.Dot,
                         RendererFormats.Png,
                         CancellationToken.None);
+                    
+                    file.Close();
                 }
 
-                peGraph.Image = Image.FromFile("graph.png");
+                
+                using (var bmpTemp = new Bitmap("graph.png"))
+                {
+                    peGraph.Image = new Bitmap(bmpTemp);
+                }
+
+                //peGraph.Image = Image.FromFile("graph.png");
+
+
             }
             catch (Exception ex)
             {
