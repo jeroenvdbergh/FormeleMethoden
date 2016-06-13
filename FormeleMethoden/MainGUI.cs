@@ -258,8 +258,8 @@ namespace Eindopdracht
 
         public Bitmap ResizeImage(Image image)
         {
-            var destRect = new Rectangle(0, 0, 424, 200);
-            var destImage = new Bitmap(424, 200);
+            var destRect = new Rectangle(0, 0, 400, 350);
+            var destImage = new Bitmap(400, 350);
 
             destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
