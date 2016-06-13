@@ -107,7 +107,6 @@
             this.ToDFA.Text = "DFA";
             this.ToDFA.UseVisualStyleBackColor = true;
             this.ToDFA.CheckedChanged += new System.EventHandler(this.ToDFA_CheckedChanged);
-            this.ToDFA.EnabledChanged += new System.EventHandler(this.ToDFA_EnabledChanged);
             // 
             // ToReguliereGrammatica
             // 

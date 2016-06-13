@@ -159,6 +159,7 @@ namespace Eindopdracht.NDFAAndDFA
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
         }

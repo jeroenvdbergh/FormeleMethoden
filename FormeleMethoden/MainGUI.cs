@@ -135,17 +135,7 @@ namespace Eindopdracht
         string[] SplitCamelCase(string source)
         {
             return Regex.Split(source, @"(?<!^)(?=[A-Z])");
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ToDFA_EnabledChanged(object sender, EventArgs e)
-        {
-
-        }
+        }        
 
         private void ToDFA_CheckedChanged(object sender, EventArgs e)
         {
@@ -217,13 +207,7 @@ namespace Eindopdracht
                 }
             }
         }
-
-        private void btnTestDFA_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            vanDFA.Checked = true;
-            InputBox.Text = "00a\n01b\n12a\n11b\n20a\n23b\n34a\n32b\n45a\n43b\n50a\n53b\nbegin 0\neind 4";
-        }
-
+       
         private async void btnGrafiek_Click(object sender, EventArgs e)
         {
             try
@@ -246,24 +230,23 @@ namespace Eindopdracht
                     
                     file.Close();
                 }
-
                 
                 using (var bmpTemp = new Bitmap("graph.png"))
                 {
                     peGraph.Image = new Bitmap(bmpTemp);
                 }
-
-                //peGraph.Image = Image.FromFile("graph.png");
-
-
             }
             catch (Exception ex)
             {
-                //TODO:Impelement exception handling
                 Console.WriteLine(ex);
             }
         }
 
+        private void btnTestDFA_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            vanDFA.Checked = true;
+            InputBox.Text = "00a\n01b\n12a\n11b\n20a\n23b\n34a\n32b\n45a\n43b\n50a\n53b\nbegin 0\neind 4";
+        }
 
         private void btnAddGram_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
