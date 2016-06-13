@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using Shields.GraphViz.Models;
 using Shields.GraphViz.Services;
 using Shields.GraphViz.Components;
+using System.Drawing.Drawing2D;
 
 namespace Eindopdracht
 {
@@ -31,6 +32,8 @@ namespace Eindopdracht
 
         private void ConvertButton_Click(object sender, EventArgs e)
         {
+            statements.Clear();
+
             if (InputBox.Text == "")
                 return;
             if (vanExpressie.Checked)
@@ -39,9 +42,7 @@ namespace Eindopdracht
                 {
                     Expressie expressie = new Expressie(InputBox.Text);
                     _outputNDFA = expressie.ToNDFA();
-
-                    statements.Clear();
-
+                    
                     if (ToDFA.Checked)
                     {
                         OutputBox.Text = _outputNDFA.ToDFA().ToString();
@@ -100,6 +101,12 @@ namespace Eindopdracht
                     OutputBox.Text = ndfa.ToReguliereGrammatica().ToString();
                 }
                 _outputNDFA = ndfa;
+
+                foreach (var t in ndfa._toestanden)
+                {
+                    EdgeStatement statement = EdgeStatement.For(t._vorigeToestand, t._volgendeToestand.Item1).Set("label", t._volgendeToestand.Item2.ToString());
+                    statements.Add(statement);
+                }
             }
             else if (vanGrammatica.Checked)
             {
@@ -128,6 +135,12 @@ namespace Eindopdracht
                     Grammatica<char> gr = new Grammatica<char>(InputBox.Lines.First().Split('-')[0], set);
 
                     OutputBox.Text = gr.TransformToNDFA().ToString();
+
+                    foreach (var t in gr.TransformToNDFA()._toestanden)
+                    {
+                        EdgeStatement statement = EdgeStatement.For(t._vorigeToestand, t._volgendeToestand.Item1).Set("label", t._volgendeToestand.Item2.ToString());
+                        statements.Add(statement);
+                    }
                 }
             }
         }
@@ -233,13 +246,39 @@ namespace Eindopdracht
                 
                 using (var bmpTemp = new Bitmap("graph.png"))
                 {
-                    peGraph.Image = new Bitmap(bmpTemp);
+                    //ResizeImage(bmpTemp);
+                    peGraph.Image = new Bitmap(ResizeImage(bmpTemp));
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
+        }
+
+        public Bitmap ResizeImage(Image image)
+        {
+            var destRect = new Rectangle(0, 0, 424, 200);
+            var destImage = new Bitmap(424, 200);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
         }
 
         private void btnTestDFA_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
