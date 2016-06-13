@@ -59,7 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Automata.cs" />
-    <Compile Include="Graphviz.cs" />
     <Compile Include="MainGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3433,13 +3432,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zoom_out.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\graph.dll.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="graph.dll" />
-    <Content Include="gvc.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

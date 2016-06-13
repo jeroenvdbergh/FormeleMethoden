@@ -226,8 +226,8 @@ namespace Eindopdracht
             try
             {
                 //Convert to byte stream
-                Image image = Graphviz.RenderImage(output, "dot", "png");
-                peGraph.Image = image;
+                //Image image = Graphviz.RenderImage(output, "dot", "png");
+                //peGraph.Image = image;
                 //using (Image image = Image.FromStream(new MemoryStream(images)))
                 //{
                 //    image.Save("output.jpg", ImageFormat.Jpeg);  // Or Png
@@ -243,6 +243,12 @@ namespace Eindopdracht
         {
             vanGrammatica.Checked = true;
             InputBox.Text = "S-->aA|aB\nA-->bS|b\nB-->aB|aC\nC-->aS|bA|aC|a";
+        }
+
+        private void btnAddReguliereExpressie_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            vanExpressie.Checked = true;
+            InputBox.Text = "a*(aa+|b*)*(aa|$)";
         }
     }
 }

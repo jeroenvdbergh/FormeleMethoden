@@ -45,9 +45,12 @@
             this.btnMinimaliseer = new DevExpress.XtraBars.BarButtonItem();
             this.btnOpslaanAls = new DevExpress.XtraBars.BarButtonItem();
             this.btnTestDFA = new DevExpress.XtraBars.BarButtonItem();
+            this.btnAddGram = new DevExpress.XtraBars.BarButtonItem();
+            this.btnAddReguliereExpressie = new DevExpress.XtraBars.BarButtonItem();
             this.rpAlgemeen = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgClose = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgActies = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgToevoegen = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.OutputBox = new System.Windows.Forms.RichTextBox();
             this.gcInput = new DevExpress.XtraEditors.GroupControl();
             this.vanGrammatica = new System.Windows.Forms.RadioButton();
@@ -57,7 +60,6 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btnGrafiek = new System.Windows.Forms.Button();
-            this.btnAddGram = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.gcOutput)).BeginInit();
             this.gcOutput.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.peGraph.Properties)).BeginInit();
@@ -192,10 +194,11 @@
             this.btnMinimaliseer,
             this.btnOpslaanAls,
             this.btnTestDFA,
-            this.btnAddGram});
+            this.btnAddGram,
+            this.btnAddReguliereExpressie});
             this.ribbonControl1.ItemsVertAlign = DevExpress.Utils.VertAlignment.Top;
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 8;
+            this.ribbonControl1.MaxItemId = 10;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpAlgemeen});
@@ -255,11 +258,28 @@
             this.btnTestDFA.Name = "btnTestDFA";
             this.btnTestDFA.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTestDFA_ItemClick);
             // 
+            // btnAddGram
+            // 
+            this.btnAddGram.Caption = "Voeg test grammatica toe";
+            this.btnAddGram.Glyph = global::Eindopdracht.Properties.Resources.add;
+            this.btnAddGram.Id = 7;
+            this.btnAddGram.Name = "btnAddGram";
+            this.btnAddGram.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAddGram_ItemClick);
+            // 
+            // btnAddReguliereExpressie
+            // 
+            this.btnAddReguliereExpressie.Caption = "Voeg test expressie toe";
+            this.btnAddReguliereExpressie.Glyph = global::Eindopdracht.Properties.Resources.add;
+            this.btnAddReguliereExpressie.Id = 9;
+            this.btnAddReguliereExpressie.Name = "btnAddReguliereExpressie";
+            this.btnAddReguliereExpressie.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAddReguliereExpressie_ItemClick);
+            // 
             // rpAlgemeen
             // 
             this.rpAlgemeen.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.rpgClose,
-            this.rpgActies});
+            this.rpgActies,
+            this.rpgToevoegen});
             this.rpAlgemeen.Name = "rpAlgemeen";
             this.rpAlgemeen.Text = "Algemeen";
             // 
@@ -274,11 +294,17 @@
             this.rpgActies.ItemLinks.Add(this.btnOpen);
             this.rpgActies.ItemLinks.Add(this.btnOpslaan);
             this.rpgActies.ItemLinks.Add(this.btnOpslaanAls);
-            this.rpgActies.ItemLinks.Add(this.btnTestDFA);
-            this.rpgActies.ItemLinks.Add(this.btnAddGram);
             this.rpgActies.ItemLinks.Add(this.btnMinimaliseer);
             this.rpgActies.Name = "rpgActies";
             this.rpgActies.Text = "Acties";
+            // 
+            // rpgToevoegen
+            // 
+            this.rpgToevoegen.ItemLinks.Add(this.btnAddReguliereExpressie);
+            this.rpgToevoegen.ItemLinks.Add(this.btnTestDFA);
+            this.rpgToevoegen.ItemLinks.Add(this.btnAddGram);
+            this.rpgToevoegen.Name = "rpgToevoegen";
+            this.rpgToevoegen.Text = "Toevoegen";
             // 
             // OutputBox
             // 
@@ -366,14 +392,6 @@
             this.btnGrafiek.UseVisualStyleBackColor = true;
             this.btnGrafiek.Click += new System.EventHandler(this.btnGrafiek_Click);
             // 
-            // btnAddGram
-            // 
-            this.btnAddGram.Caption = "Voeg test grammatica toe";
-            this.btnAddGram.Glyph = global::Eindopdracht.Properties.Resources.add;
-            this.btnAddGram.Id = 7;
-            this.btnAddGram.Name = "btnAddGram";
-            this.btnAddGram.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAddGram_ItemClick);
-            // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -442,5 +460,7 @@
         private System.Windows.Forms.Button btnGrafiek;
         private DevExpress.XtraEditors.PictureEdit peGraph;
         private DevExpress.XtraBars.BarButtonItem btnAddGram;
+        private DevExpress.XtraBars.BarButtonItem btnAddReguliereExpressie;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgToevoegen;
     }
 }
