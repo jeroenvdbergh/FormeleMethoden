@@ -147,6 +147,7 @@ namespace Eindopdracht.NDFAAndDFA
         {
             try
             {
+
                 Grammatica<T> gr = new Grammatica<T>(_startSymbolen.ElementAt(0), new HashSet<ProductieRegel<T>>());
                 foreach (Toestand<T> t in _toestanden)
                 {

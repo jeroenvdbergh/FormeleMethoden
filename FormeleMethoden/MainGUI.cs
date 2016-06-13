@@ -12,7 +12,11 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+<<<<<<< HEAD
 using System.Threading;
+=======
+using System.Text.RegularExpressions;
+>>>>>>> origin/master
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -124,11 +128,45 @@ namespace Eindopdracht
             }
             else if (vanGrammatica.Checked)
             {
+                if (ToNDFA.Checked)
+                {
+                    HashSet<ProductieRegel<char>> set = new HashSet<ProductieRegel<char>>();
 
+                    for (int x = 0; x < InputBox.Lines.Count(); x++)
+                    {
+                        string[] temp = InputBox.Lines[x].Split('-');
+                        string startSymbool = temp[0];
+                        string line = temp[2].Substring(1);
+                        string[] toestanden = line.Split('|');
+
+                        foreach (string s in toestanden)
+                        {
+                            string[] camelcase = SplitCamelCase(s);
+
+                            if (camelcase.Length > 1)
+                                set.Add(new ProductieRegel<char>(startSymbool, Convert.ToChar(camelcase[0]), camelcase[1]));
+                            else
+                                set.Add(new ProductieRegel<char>(startSymbool, Convert.ToChar(camelcase[0]), ""));
+                        }
+                    }
+
+                    Grammatica<char> gr = new Grammatica<char>(InputBox.Lines.First().Split('-')[0], set);
+
+                    OutputBox.Text = gr.TransformToNDFA().ToString();
+                }
             }
+<<<<<<< HEAD
 
         }
 
+=======
+        }
+
+        string[] SplitCamelCase(string source)
+        {
+            return Regex.Split(source, @"(?<!^)(?=[A-Z])");
+        }
+>>>>>>> origin/master
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -143,8 +181,11 @@ namespace Eindopdracht
         private void ToDFA_CheckedChanged(object sender, EventArgs e)
         {
             btnMinimaliseer.Enabled = !btnMinimaliseer.Enabled;
+<<<<<<< HEAD
 
             //button1.Visible = !button1.Visible;
+=======
+>>>>>>> origin/master
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -170,7 +211,7 @@ namespace Eindopdracht
             if (!Directory.Exists("C:\\Avans\\Jaar 3\\Periode 4\\Formele methoden\\Eindopdracht"))
                 Directory.CreateDirectory("C:\\Avans\\Jaar 3\\Periode 4\\Formele methoden\\Eindopdracht");
 
-            File.WriteAllText(@"C:\\Avans\\Jaar 3\\Periode 4\\Formele methoden\\Eindopdracht\\" + DateTime.Now.ToLongDateString() + " " + DateTime.Now.Hour + "." + DateTime.Now.Minute + "." + DateTime.Now.Second + ".txt", output);
+            File.WriteAllText(@"C:\\Avans\\Jaar 3\\Periode 4\\Formele methoden\\Eindopdracht\\" + DateTime.Now.ToLongDateString() + " " + DateTime.Now.Hour + "." + DateTime.Now.Minute + "." + DateTime.Now.Second + ".txt", InputBox.Text);
 
         }
 
@@ -182,7 +223,7 @@ namespace Eindopdracht
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string name = saveFileDialog1.FileName;
-                File.WriteAllText(name, output);
+                File.WriteAllText(name, InputBox.Text);
             }
         }
 
@@ -203,8 +244,8 @@ namespace Eindopdracht
             {
                 try
                 {
-                    string text = File.ReadAllText(openFileDialog1.FileName);
-                    string[] split = text.Split('\r');
+                    InputBox.Text = File.ReadAllText(openFileDialog1.FileName);
+                    ConvertButton_Click(null, null);
                 }
                 catch (IOException)
                 {
@@ -242,6 +283,12 @@ namespace Eindopdracht
             {
                 Console.WriteLine(ex);
             }
+        }
+
+        private void btnAddGram_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            vanGrammatica.Checked = true;
+            InputBox.Text = "S-->aA|aB\nA-->bS|b\nB-->aB|aC\nC-->aS|bA|aC|a";
         }
     }
 }

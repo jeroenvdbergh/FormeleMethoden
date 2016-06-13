@@ -30,6 +30,7 @@ namespace Eindopdracht
                 _alfabet.Add(t.x);
             }
         }
+        
 
         public bool Equals(Grammatica<T> other)
         {
