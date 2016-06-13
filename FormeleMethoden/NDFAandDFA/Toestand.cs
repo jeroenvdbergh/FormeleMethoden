@@ -10,33 +10,33 @@ namespace Eindopdracht.NDFAAndDFA
     {
         public string _name;
         public string _vorigeToestand;
-        public Tuple<string, T> _voglendeToestand; //naam volgende toestand met actie
+        public Tuple<string, T> _volgendeToestand; //naam volgende toestand met actie
 
         public Toestand(string name, Tuple<string, T> volgendeToestand)
         {
             _name = name;
-            _voglendeToestand = volgendeToestand;
+            _volgendeToestand = volgendeToestand;
             _vorigeToestand = name;
         }
 
         public void Reverse()
         {
             string tempVorigeToestand = _vorigeToestand;
-            _vorigeToestand = _voglendeToestand.Item1;
-            _voglendeToestand = new Tuple<string,T>(tempVorigeToestand,_voglendeToestand.Item2);
+            _vorigeToestand = _volgendeToestand.Item1;
+            _volgendeToestand = new Tuple<string,T>(tempVorigeToestand, _volgendeToestand.Item2);
             _name = _vorigeToestand;
         }
 
         public override string ToString()
         {
-            if (string.IsNullOrEmpty(_voglendeToestand.Item2.ToString()))
-                return "Van toestand '" + _name + "' naar toestand: '" + _voglendeToestand.Item1 + "' met " + ReguliereExpressie.Expressie.EPSILON;
-            return "Van toestand '" + _name + "' naar toestand: '" + _voglendeToestand.Item1 + "' met " + _voglendeToestand.Item2.ToString();
+            if (string.IsNullOrEmpty(_volgendeToestand.Item2.ToString()))
+                return "Van toestand '" + _name + "' naar toestand: '" + _volgendeToestand.Item1 + "' met " + ReguliereExpressie.Expressie.EPSILON;
+            return "Van toestand '" + _name + "' naar toestand: '" + _volgendeToestand.Item1 + "' met " + _volgendeToestand.Item2.ToString();
         }
 
         public bool Equals(Toestand<T> other)
         {
-            if(this._name == other._name && this._voglendeToestand == other._voglendeToestand)
+            if(this._name == other._name && this._volgendeToestand == other._volgendeToestand)
             {
                 return true;
             }
