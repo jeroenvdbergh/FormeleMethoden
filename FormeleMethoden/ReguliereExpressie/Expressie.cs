@@ -123,7 +123,7 @@ namespace Eindopdracht.ReguliereExpressie
             Stack<Toestand<char>> stuffInBrackets = new Stack<Toestand<char>>();
             int index = 0;
             foreach(char c in terminals){
-                Toestand<char> t = ndfa._toestanden.LastOrDefault(y => y._voglendeToestand.Item2 != EPSILON);
+                Toestand<char> t = ndfa._toestanden.LastOrDefault(y => y._volgendeToestand.Item2 != EPSILON);
                 if (t == null)
                     t = new Toestand<char>("0", new Tuple<string, char>("0", EPSILON));
                 switch (c)
@@ -133,16 +133,16 @@ namespace Eindopdracht.ReguliereExpressie
                         break;
                     case ')':
                         var indexLastBracket = bracketLocations.Pop();
-                        Toestand<char> p = new Toestand<char>(t._voglendeToestand.Item1, new Tuple<string,char>(indexLastBracket.Item2._name,EPSILON));
+                        Toestand<char> p = new Toestand<char>(t._volgendeToestand.Item1, new Tuple<string,char>(indexLastBracket.Item2._name,EPSILON));
                         stuffInBrackets.Push(p);
                         break;
                     case '*':
                         if (stuffInBrackets.Count == 0)
                         {
                             //epsilon van vorige naar nieuwste
-                            Toestand<char> ts = new Toestand<char>(t._name, new Tuple<string, char>(t._voglendeToestand.Item1, EPSILON));
+                            Toestand<char> ts = new Toestand<char>(t._name, new Tuple<string, char>(t._volgendeToestand.Item1, EPSILON));
                             //epsilon van nieuwste naar vorige
-                            Toestand<char> t3 = new Toestand<char>(t._voglendeToestand.Item1, new Tuple<string, char>(t._name, EPSILON));
+                            Toestand<char> t3 = new Toestand<char>(t._volgendeToestand.Item1, new Tuple<string, char>(t._name, EPSILON));
                             ndfa._toestanden.Add(ts);
                             ndfa._toestanden.Add(t3);
                         }
@@ -150,14 +150,14 @@ namespace Eindopdracht.ReguliereExpressie
                         {
                             var t5 = stuffInBrackets.Pop();
                             ndfa._toestanden.Add(t5);
-                            ndfa._toestanden.Add(new Toestand<char>(t5._voglendeToestand.Item1, new Tuple<string, char>(t5._name, EPSILON)));
+                            ndfa._toestanden.Add(new Toestand<char>(t5._volgendeToestand.Item1, new Tuple<string, char>(t5._name, EPSILON)));
                         }
                         break;
                     case '+':
                         if (stuffInBrackets.Count == 0)
                         {
                             //epsilon van nieuwste naar vorige
-                            Toestand<char> t4 = new Toestand<char>(t._voglendeToestand.Item1, new Tuple<string, char>(t._name, EPSILON));
+                            Toestand<char> t4 = new Toestand<char>(t._volgendeToestand.Item1, new Tuple<string, char>(t._name, EPSILON));
                             ndfa._toestanden.Add(t4);
                         }
                         else
@@ -172,14 +172,14 @@ namespace Eindopdracht.ReguliereExpressie
                     default:
                         if(orOperation)
                         {
-                            ndfa._toestanden.Add(new Toestand<char>(t._name, new Tuple<string, char>(t._voglendeToestand.Item1, c)));
+                            ndfa._toestanden.Add(new Toestand<char>(t._name, new Tuple<string, char>(t._volgendeToestand.Item1, c)));
                         }
                         else
                         {
                             if(ndfa._toestanden.Count == 0)
                                 ndfa._toestanden.Add(new Toestand<char>("0", new Tuple<string, char>((ndfa._toestanden.Count + 1).ToString(), c)));
                             else
-                                ndfa._toestanden.Add(new Toestand<char>(t._voglendeToestand.Item1, new Tuple<string, char>((ndfa._toestanden.Count + 1).ToString(), c)));
+                                ndfa._toestanden.Add(new Toestand<char>(t._volgendeToestand.Item1, new Tuple<string, char>((ndfa._toestanden.Count + 1).ToString(), c)));
                         }
                             
                         orOperation = false;
@@ -191,10 +191,10 @@ namespace Eindopdracht.ReguliereExpressie
             int eindtoestand = 0;
             foreach (var r in ndfa._toestanden)
             {
-                if (eindtoestand < int.Parse(r._voglendeToestand.Item1))
-                    eindtoestand = int.Parse(r._voglendeToestand.Item1);
-                if (!r._voglendeToestand.Item2.Equals(EPSILON))
-                    ndfa._invoerSymbolen.Add(r._voglendeToestand.Item2);
+                if (eindtoestand < int.Parse(r._volgendeToestand.Item1))
+                    eindtoestand = int.Parse(r._volgendeToestand.Item1);
+                if (!r._volgendeToestand.Item2.Equals(EPSILON))
+                    ndfa._invoerSymbolen.Add(r._volgendeToestand.Item2);
             }
             ndfa._eindToestanden.Add(eindtoestand.ToString());
             return ndfa;

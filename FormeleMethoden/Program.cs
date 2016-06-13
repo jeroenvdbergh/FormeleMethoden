@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shields.GraphViz.Models;
 
 namespace Eindopdracht
 {
@@ -14,6 +15,8 @@ namespace Eindopdracht
         [STAThread]
         static void Main(string[] args)
         {
+            
+
             //var b = voorbeeldGrammatica();
             //var c = voorbeeldExpressie();
             //var d = voorbeelDFA();

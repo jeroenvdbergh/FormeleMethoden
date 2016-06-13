@@ -1,5 +1,8 @@
 ﻿using Eindopdracht.NDFAAndDFA;
 using Eindopdracht.ReguliereExpressie;
+using Shields.GraphViz.Components;
+using Shields.GraphViz.Models;
+using Shields.GraphViz.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +12,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,6 +22,8 @@ namespace Eindopdracht
     {
         private NDFA<char> _outputNDFA = null;
         private string output;
+
+        List<Statement> statements = new List<Statement>();
 
         public MainGUI()
         {
@@ -48,17 +54,36 @@ namespace Eindopdracht
                         OutputBox.Text = _outputNDFA.ToReguliereGrammatica().ToString();
                     }
 
-                    output = "digraph finite_state_machine {\n";
+
+
+                    //Graph.Undirected.Add(EdgeStatement.For("a", "b"));
+                    //Graph.Undirected.Add(EdgeStatement.For("a", "c"));
+                    //statements.Add(EdgeStatement.For("a", "b"));
+                    //statements.Add(EdgeStatement.For("a", "c"));
+
+                    //output = "digraph finite_state_machine {\n";
                     foreach (var t in _outputNDFA._eindToestanden)
                     {
-                        output += "node [shape = doublecircle]; " + t + " ;\n";
+                        //output += "node [shape = doublecircle]; " + t + " ;\n";
                     }
-                    output += "node [shape = circle];\n";
+                    //output += "node [shape = circle];\n";
                     foreach (var t in _outputNDFA._toestanden)
                     {
-                        output += t._name + " -> " + t._voglendeToestand.Item1 + " [label=\"" + t._voglendeToestand.Item2.ToString() + "\"];" + "\n";
+                        //output += t._name + " -> " + t._volgendeToestand.Item1 + " [label=\"" + t._volgendeToestand.Item2.ToString() + "\"];" + "\n";
+                        //graph.Add(EdgeStatement.For(t._volgendeToestand.Item1, t._volgendeToestand.Item2.ToString()));
+
+                        
+
+                        Port port = new Port("label", CompassPoints.North);
+                        NodeId myId = new NodeId("label", port);
+                        EdgeStatement statement = EdgeStatement.For(t._vorigeToestand, t._volgendeToestand.Item1).Set("label", t._volgendeToestand.Item2.ToString());
+                        //NodeStatement statement1 = NodeStatement.For(t._vorigeToestand).Set("label", t._volgendeToestand.Item2.ToString());
+
+                        //NodeStatement statement = NodeStatement.For(t._vorigeToestand, t._volgendeToestand.Item1).Set("label", t._volgendeToestand.Item2.ToString());
+                        statements.Add(statement);
+
                     }
-                    output += "}";
+                    //output += "}";
 
                     //output = InputBox.Text + "\r" + OutputBox.Text;                   
                 }
@@ -80,7 +105,7 @@ namespace Eindopdracht
                     else ndfa._toestanden.Add(Toestand<char>.CreateToestand(temp));
                     foreach (var t in ndfa._toestanden)
                     {
-                        ndfa._invoerSymbolen.Add(t._voglendeToestand.Item2);
+                        ndfa._invoerSymbolen.Add(t._volgendeToestand.Item2);
                     }
                 }
                 if (ToDFA.Checked)
@@ -101,9 +126,9 @@ namespace Eindopdracht
             {
 
             }
-           
+
         }
-        
+
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -112,13 +137,13 @@ namespace Eindopdracht
 
         private void ToDFA_EnabledChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void ToDFA_CheckedChanged(object sender, EventArgs e)
         {
             btnMinimaliseer.Enabled = !btnMinimaliseer.Enabled;
-            
+
             //button1.Visible = !button1.Visible;
         }
 
@@ -173,7 +198,7 @@ namespace Eindopdracht
             openFileDialog1.Filter = "Text Files (.txt)|*.txt|All Files (*.*)|*.*";
             openFileDialog1.FilterIndex = 1;
             openFileDialog1.Multiselect = false;
-            
+
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -194,21 +219,28 @@ namespace Eindopdracht
             InputBox.Text = "00a\n01b\n12a\n11b\n20a\n23b\n34a\n32b\n45a\n43b\n50a\n53b\nbegin 0\neind 4";
         }
 
-        private void btnGrafiek_Click(object sender, EventArgs e)
+        private async void btnGrafiek_Click(object sender, EventArgs e)
         {
             try
             {
-                //Convert to byte stream
-                Image image = Graphviz.RenderImage(output, "dot", "png");
-                peGraph.Image = image;
-                //using (Image image = Image.FromStream(new MemoryStream(images)))
-                //{
-                //    image.Save("output.jpg", ImageFormat.Jpeg);  // Or Png
-                //}
+
+                Graph graph = Graph.Undirected.AddRange(statements);
+
+                IRenderer renderer = new Renderer("C:\\Program Files (x86)\\Graphviz2.38\\bin");
+                using (Stream file = File.Create("graph.png"))
+                {
+                    await renderer.RunAsync(
+                        graph, file,
+                        RendererLayouts.Dot,
+                        RendererFormats.Png,
+                        CancellationToken.None);
+                }
+
+                peGraph.Image = Image.FromFile("graph.png");
             }
             catch (Exception ex)
             {
-                //TODO:Impelement exception handling
+                Console.WriteLine(ex);
             }
         }
     }

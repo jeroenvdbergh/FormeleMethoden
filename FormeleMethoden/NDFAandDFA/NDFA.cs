@@ -68,10 +68,10 @@ namespace Eindopdracht.NDFAAndDFA
                 foreach (string p in k.Value)
                 {
                     string naam = "";
-                    SortedSet<char> d = new SortedSet<char>((newt._voglendeToestand.Item1 + p).ToCharArray());
+                    SortedSet<char> d = new SortedSet<char>((newt._volgendeToestand.Item1 + p).ToCharArray());
                     foreach (char y in d)
                         naam += y;
-                    newt._voglendeToestand = new Tuple<string, T>(naam, newt._voglendeToestand.Item2);
+                    newt._volgendeToestand = new Tuple<string, T>(naam, newt._volgendeToestand.Item2);
                 }
                 newDFA._toestanden.Add(newt);
             }
@@ -81,7 +81,7 @@ namespace Eindopdracht.NDFAAndDFA
                 var x = _startSymbolen.FirstOrDefault(p => p == newDFA._toestanden.ElementAt(v)._name);
                 if (x == null)
                 {
-                    var t = newDFA._toestanden.FirstOrDefault(f => f._voglendeToestand.Item1 == newDFA._toestanden.ElementAt(v)._name && f._name != newDFA._toestanden.ElementAt(v)._name);
+                    var t = newDFA._toestanden.FirstOrDefault(f => f._volgendeToestand.Item1 == newDFA._toestanden.ElementAt(v)._name && f._name != newDFA._toestanden.ElementAt(v)._name);
                     if (t == default(Toestand<T>))
                         newDFA._toestanden.Remove(newDFA._toestanden.ElementAt(v));
                 }
@@ -117,8 +117,8 @@ namespace Eindopdracht.NDFAAndDFA
             //vul de tabel EN START VANUIT DE BEGINTOESTANDEN
             foreach (Toestand<T> t in _toestanden.Where(r=> _startSymbolen.Contains(r._name)))
             {
-                var a = new Tuple<string, T>(t._name, t._voglendeToestand.Item2);
-                toestandenEnWaarJeHeenKan[a].UnionWith(t._voglendeToestand.Item1.ToCharArray().Select(c => c.ToString()).ToList());
+                var a = new Tuple<string, T>(t._name, t._volgendeToestand.Item2);
+                toestandenEnWaarJeHeenKan[a].UnionWith(t._volgendeToestand.Item1.ToCharArray().Select(c => c.ToString()).ToList());
             }
             //vul de tabel aan met nieuwe waardes!
             for (int i = 0; i < toestandenEnWaarJeHeenKan.Count; i++)
@@ -127,10 +127,10 @@ namespace Eindopdracht.NDFAAndDFA
                 foreach (char state in input.Item1.ToCharArray())
                 {
                     var v = new HashSet<Toestand<T>>();
-                    v.UnionWith(_toestanden.Where(v1 => v1._name == state.ToString() && v1._voglendeToestand.Item2.Equals(input.Item2)));
-                    var v3 = v.Where(t1 => t1._voglendeToestand.Item2.Equals(input.Item2));
+                    v.UnionWith(_toestanden.Where(v1 => v1._name == state.ToString() && v1._volgendeToestand.Item2.Equals(input.Item2)));
+                    var v3 = v.Where(t1 => t1._volgendeToestand.Item2.Equals(input.Item2));
                     foreach (Toestand<T> t2 in v3)
-                        toestandenEnWaarJeHeenKan[input].Add(t2._voglendeToestand.Item1);
+                        toestandenEnWaarJeHeenKan[input].Add(t2._volgendeToestand.Item1);
                 }
                 //zonodig nieuwe toestandtoevoegen
                 string newstate = "";
@@ -152,7 +152,7 @@ namespace Eindopdracht.NDFAAndDFA
                 {
                     if (!gr._sortedRules.ContainsKey(t._name))
                         gr._sortedRules.Add(t._name, new HashSet<ProductieRegel<T>>());
-                    gr._sortedRules[t._name].Add(new ProductieRegel<T>(t._name, t._voglendeToestand.Item2, t._voglendeToestand.Item1));
+                    gr._sortedRules[t._name].Add(new ProductieRegel<T>(t._name, t._volgendeToestand.Item2, t._volgendeToestand.Item1));
                 }
                 return gr;
             }
