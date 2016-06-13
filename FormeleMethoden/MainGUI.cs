@@ -228,16 +228,7 @@ namespace Eindopdracht
         private async void btnGrafiek_Click(object sender, EventArgs e)
         {
             try
-            {
-<<<<<<< HEAD
-                //Convert to byte stream
-                //Image image = Graphviz.RenderImage(output, "dot", "png");
-                //peGraph.Image = image;
-                //using (Image image = Image.FromStream(new MemoryStream(images)))
-                //{
-                //    image.Save("output.jpg", ImageFormat.Jpeg);  // Or Png
-                //}
-=======
+            {              
 
                 Graph graph = Graph.Undirected.AddRange(statements);
 
@@ -252,7 +243,6 @@ namespace Eindopdracht
                 }
 
                 peGraph.Image = Image.FromFile("graph.png");
->>>>>>> origin/master
             }
             catch (Exception ex)
             {
