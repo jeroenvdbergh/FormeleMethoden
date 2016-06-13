@@ -23,7 +23,7 @@ namespace Eindopdracht.NDFAAndDFA
         {
             string tempVorigeToestand = _vorigeToestand;
             _vorigeToestand = _volgendeToestand.Item1;
-            _volgendeToestand = new Tuple<string,T>(tempVorigeToestand,_volgendeToestand.Item2);
+            _volgendeToestand = new Tuple<string,T>(tempVorigeToestand, _volgendeToestand.Item2);
             _name = _vorigeToestand;
         }
 

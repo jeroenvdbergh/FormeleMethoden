@@ -1,8 +1,5 @@
 ﻿using Eindopdracht.NDFAAndDFA;
 using Eindopdracht.ReguliereExpressie;
-using Shields.GraphViz.Components;
-using Shields.GraphViz.Models;
-using Shields.GraphViz.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,13 +9,13 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
-<<<<<<< HEAD
 using System.Threading;
-=======
 using System.Text.RegularExpressions;
->>>>>>> origin/master
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Shields.GraphViz.Models;
+using Shields.GraphViz.Services;
+using Shields.GraphViz.Components;
 
 namespace Eindopdracht
 {
@@ -26,7 +23,6 @@ namespace Eindopdracht
     {
         private NDFA<char> _outputNDFA = null;
         private string output;
-
         List<Statement> statements = new List<Statement>();
 
         public MainGUI()
@@ -58,38 +54,18 @@ namespace Eindopdracht
                         OutputBox.Text = _outputNDFA.ToReguliereGrammatica().ToString();
                     }
 
-
-
-                    //Graph.Undirected.Add(EdgeStatement.For("a", "b"));
-                    //Graph.Undirected.Add(EdgeStatement.For("a", "c"));
-                    //statements.Add(EdgeStatement.For("a", "b"));
-                    //statements.Add(EdgeStatement.For("a", "c"));
-
-                    //output = "digraph finite_state_machine {\n";
                     foreach (var t in _outputNDFA._eindToestanden)
                     {
                         //output += "node [shape = doublecircle]; " + t + " ;\n";
                     }
-                    //output += "node [shape = circle];\n";
+
                     foreach (var t in _outputNDFA._toestanden)
                     {
-                        //output += t._name + " -> " + t._volgendeToestand.Item1 + " [label=\"" + t._volgendeToestand.Item2.ToString() + "\"];" + "\n";
-                        //graph.Add(EdgeStatement.For(t._volgendeToestand.Item1, t._volgendeToestand.Item2.ToString()));
-
-                        
-
                         Port port = new Port("label", CompassPoints.North);
                         NodeId myId = new NodeId("label", port);
                         EdgeStatement statement = EdgeStatement.For(t._vorigeToestand, t._volgendeToestand.Item1).Set("label", t._volgendeToestand.Item2.ToString());
-                        //NodeStatement statement1 = NodeStatement.For(t._vorigeToestand).Set("label", t._volgendeToestand.Item2.ToString());
-
-                        //NodeStatement statement = NodeStatement.For(t._vorigeToestand, t._volgendeToestand.Item1).Set("label", t._volgendeToestand.Item2.ToString());
                         statements.Add(statement);
-
-                    }
-                    //output += "}";
-
-                    //output = InputBox.Text + "\r" + OutputBox.Text;                   
+                    }          
                 }
                 catch (Exception exception)
                 {
@@ -155,18 +131,12 @@ namespace Eindopdracht
                     OutputBox.Text = gr.TransformToNDFA().ToString();
                 }
             }
-<<<<<<< HEAD
-
-        }
-
-=======
         }
 
         string[] SplitCamelCase(string source)
         {
             return Regex.Split(source, @"(?<!^)(?=[A-Z])");
         }
->>>>>>> origin/master
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -181,11 +151,6 @@ namespace Eindopdracht
         private void ToDFA_CheckedChanged(object sender, EventArgs e)
         {
             btnMinimaliseer.Enabled = !btnMinimaliseer.Enabled;
-<<<<<<< HEAD
-
-            //button1.Visible = !button1.Visible;
-=======
->>>>>>> origin/master
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -281,9 +246,11 @@ namespace Eindopdracht
             }
             catch (Exception ex)
             {
+                //TODO:Impelement exception handling
                 Console.WriteLine(ex);
             }
         }
+
 
         private void btnAddGram_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
