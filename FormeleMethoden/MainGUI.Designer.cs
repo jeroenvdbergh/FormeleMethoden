@@ -37,8 +37,7 @@
             this.vanExpressie = new System.Windows.Forms.RadioButton();
             this.vanDFA = new System.Windows.Forms.RadioButton();
             this.gcOutput = new DevExpress.XtraEditors.GroupControl();
-            this.OutputBox = new System.Windows.Forms.RichTextBox();
-            this.gcInput = new DevExpress.XtraEditors.GroupControl();
+            this.peGraph = new DevExpress.XtraEditors.PictureEdit();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnSluiten = new DevExpress.XtraBars.BarButtonItem();
             this.btnOpen = new DevExpress.XtraBars.BarButtonItem();
@@ -49,6 +48,8 @@
             this.rpAlgemeen = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgClose = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgActies = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.OutputBox = new System.Windows.Forms.RichTextBox();
+            this.gcInput = new DevExpress.XtraEditors.GroupControl();
             this.vanGrammatica = new System.Windows.Forms.RadioButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.lcVan = new DevExpress.XtraEditors.LabelControl();
@@ -56,17 +57,17 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btnGrafiek = new System.Windows.Forms.Button();
-            this.peGraph = new DevExpress.XtraEditors.PictureEdit();
+            this.btnAddGram = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.gcOutput)).BeginInit();
             this.gcOutput.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.peGraph.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcInput)).BeginInit();
             this.gcInput.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.peGraph.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ConvertButton
@@ -171,22 +172,14 @@
             this.gcOutput.TabIndex = 18;
             this.gcOutput.Text = "Output";
             // 
-            // OutputBox
+            // peGraph
             // 
-            this.OutputBox.Location = new System.Drawing.Point(6, 29);
-            this.OutputBox.Name = "OutputBox";
-            this.OutputBox.Size = new System.Drawing.Size(423, 347);
-            this.OutputBox.TabIndex = 0;
-            this.OutputBox.Text = "";
-            // 
-            // gcInput
-            // 
-            this.gcInput.Controls.Add(this.InputBox);
-            this.gcInput.Location = new System.Drawing.Point(12, 140);
-            this.gcInput.Name = "gcInput";
-            this.gcInput.Size = new System.Drawing.Size(290, 236);
-            this.gcInput.TabIndex = 19;
-            this.gcInput.Text = "Input";
+            this.peGraph.Location = new System.Drawing.Point(435, 29);
+            this.peGraph.MenuManager = this.ribbonControl1;
+            this.peGraph.Name = "peGraph";
+            this.peGraph.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.peGraph.Size = new System.Drawing.Size(424, 348);
+            this.peGraph.TabIndex = 1;
             // 
             // ribbonControl1
             // 
@@ -198,10 +191,11 @@
             this.btnOpslaan,
             this.btnMinimaliseer,
             this.btnOpslaanAls,
-            this.btnTestDFA});
+            this.btnTestDFA,
+            this.btnAddGram});
             this.ribbonControl1.ItemsVertAlign = DevExpress.Utils.VertAlignment.Top;
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 7;
+            this.ribbonControl1.MaxItemId = 8;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpAlgemeen});
@@ -226,7 +220,6 @@
             this.btnOpen.Glyph = global::Eindopdracht.Properties.Resources.open;
             this.btnOpen.Id = 2;
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnOpen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOpen_ItemClick);
             // 
             // btnOpslaan
@@ -282,9 +275,27 @@
             this.rpgActies.ItemLinks.Add(this.btnOpslaan);
             this.rpgActies.ItemLinks.Add(this.btnOpslaanAls);
             this.rpgActies.ItemLinks.Add(this.btnTestDFA);
+            this.rpgActies.ItemLinks.Add(this.btnAddGram);
             this.rpgActies.ItemLinks.Add(this.btnMinimaliseer);
             this.rpgActies.Name = "rpgActies";
             this.rpgActies.Text = "Acties";
+            // 
+            // OutputBox
+            // 
+            this.OutputBox.Location = new System.Drawing.Point(6, 29);
+            this.OutputBox.Name = "OutputBox";
+            this.OutputBox.Size = new System.Drawing.Size(423, 347);
+            this.OutputBox.TabIndex = 0;
+            this.OutputBox.Text = "";
+            // 
+            // gcInput
+            // 
+            this.gcInput.Controls.Add(this.InputBox);
+            this.gcInput.Location = new System.Drawing.Point(12, 140);
+            this.gcInput.Name = "gcInput";
+            this.gcInput.Size = new System.Drawing.Size(290, 236);
+            this.gcInput.TabIndex = 19;
+            this.gcInput.Text = "Input";
             // 
             // vanGrammatica
             // 
@@ -355,14 +366,13 @@
             this.btnGrafiek.UseVisualStyleBackColor = true;
             this.btnGrafiek.Click += new System.EventHandler(this.btnGrafiek_Click);
             // 
-            // peGraph
+            // btnAddGram
             // 
-            this.peGraph.Location = new System.Drawing.Point(435, 29);
-            this.peGraph.MenuManager = this.ribbonControl1;
-            this.peGraph.Name = "peGraph";
-            this.peGraph.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.peGraph.Size = new System.Drawing.Size(424, 348);
-            this.peGraph.TabIndex = 1;
+            this.btnAddGram.Caption = "Voeg test grammatica toe";
+            this.btnAddGram.Glyph = global::Eindopdracht.Properties.Resources.add;
+            this.btnAddGram.Id = 7;
+            this.btnAddGram.Name = "btnAddGram";
+            this.btnAddGram.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAddGram_ItemClick);
             // 
             // MainGUI
             // 
@@ -385,16 +395,16 @@
             this.Text = "Formele Methodes";
             ((System.ComponentModel.ISupportInitialize)(this.gcOutput)).EndInit();
             this.gcOutput.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.peGraph.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcInput)).EndInit();
             this.gcInput.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.peGraph.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -431,5 +441,6 @@
         private DevExpress.XtraBars.BarButtonItem btnTestDFA;
         private System.Windows.Forms.Button btnGrafiek;
         private DevExpress.XtraEditors.PictureEdit peGraph;
+        private DevExpress.XtraBars.BarButtonItem btnAddGram;
     }
 }

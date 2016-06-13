@@ -95,6 +95,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -3432,6 +3433,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zoom_out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\graph.dll.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="graph.dll" />
