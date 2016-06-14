@@ -45,8 +45,8 @@
     <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
-    <Reference Include="Shields.GraphViz, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Shields.GraphViz.1.0.0.6\lib\net45\Shields.GraphViz.dll</HintPath>
+    <Reference Include="Shields.GraphViz, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Shields.GraphViz.1.0.2.0\lib\net45\Shields.GraphViz.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

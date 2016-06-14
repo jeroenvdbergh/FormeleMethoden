@@ -11,34 +11,35 @@ namespace Eindopdracht
 {
     public class Grammatica<T>
     {
-        public Dictionary<string, HashSet<ProductieRegel<T>>> _sortedRules = new Dictionary<string, HashSet<ProductieRegel<T>>>();
-        public HashSet<T> _alfabet = new HashSet<T>();
-        private string _startSymbool;
+        public Dictionary<string, HashSet<ProductieRegel<T>>> productieRegels = new Dictionary<string, HashSet<ProductieRegel<T>>>();
+        public HashSet<T> alfabet = new HashSet<T>();
+        private string startSymbool;
 
-        public Grammatica(string startSymbool, HashSet<ProductieRegel<T>> productieRegels)
+        public Grammatica(string startSymbool, HashSet<ProductieRegel<T>> regels)
         {
-            this._startSymbool = startSymbool;
-            foreach(ProductieRegel<T> t in productieRegels){
-                if(!_sortedRules.ContainsKey(t.linkerkant))
+            this.startSymbool = startSymbool;
+            foreach (ProductieRegel<T> t in regels)
+            {
+                if (!productieRegels.ContainsKey(t.linkerkant))
                 {
                     var a = new HashSet<ProductieRegel<T>>();
                     a.Add(t);
-                    _sortedRules.Add(t.linkerkant, a);
+                    productieRegels.Add(t.linkerkant, a);
                 }
                 else
-                    _sortedRules[t.linkerkant].Add(t);
-                _alfabet.Add(t.x);
+                    productieRegels[t.linkerkant].Add(t);
+                alfabet.Add(t.x);
             }
         }
-        
+
 
         public bool Equals(Grammatica<T> other)
         {
-            if(other == null)
+            if (other == null)
             {
                 return false;
             }
-            else if(this.ToString() == other.ToString() && this._startSymbool == other._startSymbool && this._sortedRules == other._sortedRules && this._alfabet == other._alfabet)
+            else if (this.ToString() == other.ToString() && this.startSymbool == other.startSymbool && this.productieRegels == other.productieRegels && this.alfabet == other.alfabet)
             {
                 return true;
             }
@@ -49,26 +50,26 @@ namespace Eindopdracht
         public override string ToString()
         {
             String beschrijving = "";
-            foreach (KeyValuePair<string, HashSet<ProductieRegel<T>>> pair in _sortedRules)
+            foreach (KeyValuePair<string, HashSet<ProductieRegel<T>>> pair in productieRegels)
             {
                 beschrijving += pair.Key + " --> ";
                 foreach (ProductieRegel<T> t in pair.Value)
                     beschrijving += t.x + t.rechterkant + "|";
-                beschrijving = beschrijving.Substring(0,beschrijving.Length-1) + "\n";
+                beschrijving = beschrijving.Substring(0, beschrijving.Length - 1) + "\n";
             }
-            return beschrijving;      
+            return beschrijving;
         }
 
         public NDFA<T> TransformToNDFA()
         {
             NDFA<T> ndfa = new NDFA<T>();
-            ndfa._invoerSymbolen = _alfabet;
-            foreach (KeyValuePair<string, HashSet<ProductieRegel<T>>> toestandEnOvergangen in _sortedRules)
+            ndfa.invoerSymbolen = alfabet;
+            foreach (KeyValuePair<string, HashSet<ProductieRegel<T>>> toestandEnOvergangen in productieRegels)
             {
                 foreach (ProductieRegel<T> t in toestandEnOvergangen.Value)
-                {                    
-                    Toestand<T> toestand = new Toestand<T>(toestandEnOvergangen.Key,new Tuple<string,T>(t.rechterkant,t.x));
-                    ndfa._toestanden.Add(toestand);
+                {
+                    Toestand<T> toestand = new Toestand<T>(toestandEnOvergangen.Key, new Tuple<string, T>(t.rechterkant, t.x));
+                    ndfa.toestanden.Add(toestand);
                 }
             }
             return ndfa;
@@ -78,5 +79,5 @@ namespace Eindopdracht
         {
             return false;
         }
-    }    
+    }
 }

@@ -14,38 +14,6 @@ namespace Eindopdracht
         [STAThread]
         static void Main(string[] args)
         {
-            //var b = voorbeeldGrammatica();
-            //var c = voorbeeldExpressie();
-            //var d = voorbeelDFA();
-            //var e = voorbeeldNDFA();
-            //Console.WriteLine("expressie");
-            //Console.WriteLine(c.ToString());
-            //Console.WriteLine("expressie -> ndfa");
-            //Console.WriteLine(c.ToNDFA().ToString());
-            //Console.WriteLine("get language");
-            //Console.WriteLine(c.GetLanguage(3).ToString());
-
-            //Console.WriteLine("grammatica");
-            //Console.WriteLine(b.ToString());
-            //Console.WriteLine("grammatica -> NDFA");
-            //Console.WriteLine(b.TransformToNDFA().ToString());
-
-            //Console.WriteLine("DFA");
-            //Console.WriteLine(d.ToString());
-            //Console.WriteLine("REVERSE DFA");
-            //Console.WriteLine(d.Reverse().ToString());
-
-            //Console.WriteLine("Minimaliseren DFA");
-            //Console.WriteLine(minimaliserenDFA().ToString());
-            //Console.WriteLine("Ontkenning");
-            //Console.WriteLine(d.Ontkenning().ToString());
-
-            //Console.WriteLine("NDFA");
-            //Console.WriteLine(e.ToString());
-            //Console.WriteLine("NDFA -> DFA");
-            //Console.WriteLine(e.ToDFA().ToString());
-            //Console.WriteLine("NDFA -> Reguliere Grammatica");
-            //Console.WriteLine(e.ToReguliereGrammatica().ToString());
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainGUI());
@@ -56,32 +24,33 @@ namespace Eindopdracht
         static public NDFA<char> voorbeeldNDFA()
         {
             NDFA<char> ndfa = new NDFA<char>();
-            ndfa._invoerSymbolen = new HashSet<char>("ab".ToCharArray());
-            //waar je begint, volgende toestand, met letter
+            ndfa.invoerSymbolen = new HashSet<char>("ab".ToCharArray());
+
             Toestand<char> t1 = new Toestand<char>("0", new Tuple<string, char>("1", 'a'));
             Toestand<char> t2 = new Toestand<char>("1", new Tuple<string, char>("0", 'b'));
             Toestand<char> t3 = new Toestand<char>("0", new Tuple<string, char>("0", 'b'));
             Toestand<char> t4 = new Toestand<char>("0", new Tuple<string, char>("2", 'a'));
             Toestand<char> t5 = new Toestand<char>("2", new Tuple<string, char>("1", 'b'));
             Toestand<char> t6 = new Toestand<char>("2", new Tuple<string, char>("0", 'b'));
-            //Toestand<char> t7 = new Toestand<char>("2", new Tuple<string, char>("1", 'c'));
-            ndfa._toestanden.Add(t1);
-            ndfa._toestanden.Add(t2);
-            ndfa._toestanden.Add(t3);
-            ndfa._toestanden.Add(t4);
-            ndfa._toestanden.Add(t5);
-            ndfa._toestanden.Add(t6);
-            //ndfa.Toestanden.Add(t7);
-            ndfa._startSymbolen.Add("0");
-            ndfa._eindToestanden.Add("1");
+
+            ndfa.toestanden.Add(t1);
+            ndfa.toestanden.Add(t2);
+            ndfa.toestanden.Add(t3);
+            ndfa.toestanden.Add(t4);
+            ndfa.toestanden.Add(t5);
+            ndfa.toestanden.Add(t6);
+
+            ndfa.startSymbolen.Add("0");
+            ndfa.eindToestanden.Add("1");
             return ndfa;
         }
 
         static public DFA<char> minimaliserenDFA()
         {
-            //les 6 dia 14
             DFA<char> dfa = new DFA<char>();
-            dfa._invoerSymbolen = new HashSet<char>("ab".ToCharArray());
+
+            dfa.invoerSymbolen = new HashSet<char>("ab".ToCharArray());
+
             Toestand<char> t1 = new Toestand<char>("0", new Tuple<string, char>("0", 'a'));
             Toestand<char> t2 = new Toestand<char>("0", new Tuple<string, char>("1", 'b'));
             Toestand<char> t3 = new Toestand<char>("1", new Tuple<string, char>("2", 'a'));
@@ -94,27 +63,29 @@ namespace Eindopdracht
             Toestand<char> t10 = new Toestand<char>("4", new Tuple<string, char>("3", 'b'));
             Toestand<char> t11 = new Toestand<char>("5", new Tuple<string, char>("0", 'a'));
             Toestand<char> t12 = new Toestand<char>("5", new Tuple<string, char>("3", 'b'));
-            dfa._toestanden.Add(t1);
-            dfa._toestanden.Add(t2);
-            dfa._toestanden.Add(t3);
-            dfa._toestanden.Add(t4);
-            dfa._toestanden.Add(t5);
-            dfa._toestanden.Add(t6);
-            dfa._toestanden.Add(t7);
-            dfa._toestanden.Add(t8);
-            dfa._toestanden.Add(t9);
-            dfa._toestanden.Add(t10);
-            dfa._toestanden.Add(t11);
-            dfa._toestanden.Add(t12);
-            dfa._startSymbolen.Add("0");
-            dfa._eindToestanden.Add("4");
+
+            dfa.toestanden.Add(t1);
+            dfa.toestanden.Add(t2);
+            dfa.toestanden.Add(t3);
+            dfa.toestanden.Add(t4);
+            dfa.toestanden.Add(t5);
+            dfa.toestanden.Add(t6);
+            dfa.toestanden.Add(t7);
+            dfa.toestanden.Add(t8);
+            dfa.toestanden.Add(t9);
+            dfa.toestanden.Add(t10);
+            dfa.toestanden.Add(t11);
+            dfa.toestanden.Add(t12);
+            dfa.startSymbolen.Add("0");
+            dfa.eindToestanden.Add("4");
+
             return dfa.Minimalize();
         }
 
         static public DFA<char> voorbeelDFA()
         {
             DFA<char> dfa = new DFA<char>();
-            dfa._invoerSymbolen = new HashSet<char>("ab".ToCharArray());
+            dfa.invoerSymbolen = new HashSet<char>("ab".ToCharArray());
             Toestand<char> t1 = new Toestand<char>("0", new Tuple<string, char>("0", 'a'));
             Toestand<char> t2 = new Toestand<char>("0", new Tuple<string, char>("1", 'b'));
             Toestand<char> t3 = new Toestand<char>("1", new Tuple<string, char>("2", 'a'));
@@ -127,20 +98,20 @@ namespace Eindopdracht
             Toestand<char> t10 = new Toestand<char>("4", new Tuple<string, char>("3", 'b'));
             Toestand<char> t11 = new Toestand<char>("5", new Tuple<string, char>("0", 'a'));
             Toestand<char> t12 = new Toestand<char>("5", new Tuple<string, char>("3", 'b'));
-            dfa._toestanden.Add(t1);
-            dfa._toestanden.Add(t2);
-            dfa._toestanden.Add(t3);
-            dfa._toestanden.Add(t4);
-            dfa._toestanden.Add(t5);
-            dfa._toestanden.Add(t6);
-            dfa._toestanden.Add(t7);
-            dfa._toestanden.Add(t8);
-            dfa._toestanden.Add(t9);
-            dfa._toestanden.Add(t10);
-            dfa._toestanden.Add(t11);
-            dfa._toestanden.Add(t12);
-            dfa._startSymbolen.Add("0");
-            dfa._eindToestanden.Add("1");
+            dfa.toestanden.Add(t1);
+            dfa.toestanden.Add(t2);
+            dfa.toestanden.Add(t3);
+            dfa.toestanden.Add(t4);
+            dfa.toestanden.Add(t5);
+            dfa.toestanden.Add(t6);
+            dfa.toestanden.Add(t7);
+            dfa.toestanden.Add(t8);
+            dfa.toestanden.Add(t9);
+            dfa.toestanden.Add(t10);
+            dfa.toestanden.Add(t11);
+            dfa.toestanden.Add(t12);
+            dfa.startSymbolen.Add("0");
+            dfa.eindToestanden.Add("1");
             return dfa;
         }
 

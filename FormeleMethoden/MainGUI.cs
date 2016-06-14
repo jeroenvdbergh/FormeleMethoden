@@ -56,14 +56,14 @@ namespace Eindopdracht
                         OutputBox.Text = _outputNDFA.ToReguliereGrammatica().ToString();
                     }
 
-                    foreach (var t in _outputNDFA._eindToestanden)
+                    foreach (var t in _outputNDFA.eindToestanden)
                     {
                         //output += "node [shape = doublecircle]; " + t + " ;\n";
                     }
 
-                    foreach (var t in _outputNDFA._toestanden)
+                    foreach (var t in _outputNDFA.toestanden)
                     {
-                        EdgeStatement statement = EdgeStatement.For(t._vorigeToestand, t._volgendeToestand.Item1).Set("label", t._volgendeToestand.Item2.ToString());
+                        EdgeStatement statement = EdgeStatement.For(t.vorigeToestand, t.volgendeToestand.Item1).Set("label", t.volgendeToestand.Item2.ToString());
                         statements.Add(statement);
                     }          
                 }
@@ -79,13 +79,13 @@ namespace Eindopdracht
                 {
                     string temp = InputBox.Lines[x];
                     if (temp.StartsWith("begin"))
-                        ndfa._startSymbolen.Add(temp.Last().ToString());
+                        ndfa.startSymbolen.Add(temp.Last().ToString());
                     else if (temp.StartsWith("eind"))
-                        ndfa._eindToestanden.Add(temp.Last().ToString());
-                    else ndfa._toestanden.Add(Toestand<char>.CreateToestand(temp));
-                    foreach (var t in ndfa._toestanden)
+                        ndfa.eindToestanden.Add(temp.Last().ToString());
+                    else ndfa.toestanden.Add(Toestand<char>.CreateToestand(temp));
+                    foreach (var t in ndfa.toestanden)
                     {
-                        ndfa._invoerSymbolen.Add(t._volgendeToestand.Item2);
+                        ndfa.invoerSymbolen.Add(t.volgendeToestand.Item2);
                     }
                 }
                 if (ToDFA.Checked)
@@ -102,9 +102,9 @@ namespace Eindopdracht
                 }
                 _outputNDFA = ndfa;
 
-                foreach (var t in ndfa._toestanden)
+                foreach (var t in ndfa.toestanden)
                 {
-                    EdgeStatement statement = EdgeStatement.For(t._vorigeToestand, t._volgendeToestand.Item1).Set("label", t._volgendeToestand.Item2.ToString());
+                    EdgeStatement statement = EdgeStatement.For(t.vorigeToestand, t.volgendeToestand.Item1).Set("label", t.volgendeToestand.Item2.ToString());
                     statements.Add(statement);
                 }
             }
@@ -136,9 +136,9 @@ namespace Eindopdracht
 
                     OutputBox.Text = gr.TransformToNDFA().ToString();
 
-                    foreach (var t in gr.TransformToNDFA()._toestanden)
+                    foreach (var t in gr.TransformToNDFA().toestanden)
                     {
-                        EdgeStatement statement = EdgeStatement.For(t._vorigeToestand, t._volgendeToestand.Item1).Set("label", t._volgendeToestand.Item2.ToString());
+                        EdgeStatement statement = EdgeStatement.For(t.vorigeToestand, t.volgendeToestand.Item1).Set("label", t.volgendeToestand.Item2.ToString());
                         statements.Add(statement);
                     }
                 }

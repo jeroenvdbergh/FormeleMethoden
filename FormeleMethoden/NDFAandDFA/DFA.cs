@@ -9,6 +9,7 @@ namespace Eindopdracht.NDFAAndDFA
 {
     public class DFA<T> : NDFA<T>
     {
+        //Lege constructor
         public DFA()
         {
 
@@ -17,27 +18,27 @@ namespace Eindopdracht.NDFAAndDFA
         public DFA<T> Ontkenning()
         {
             DFA<T> dfa = new DFA<T>();
-            dfa._invoerSymbolen = _invoerSymbolen;
+            dfa.invoerSymbolen = invoerSymbolen;
             HashSet<string> eind = new HashSet<string>();
-            foreach(Toestand<T> t in _toestanden){
-                if(!_eindToestanden.Contains(t._name)){
-                    eind.Add(t._name);
+            foreach(Toestand<T> t in toestanden){
+                if(!eindToestanden.Contains(t.naam)){
+                    eind.Add(t.naam);
                 }
             }
-            dfa._eindToestanden = eind;
-            dfa._toestanden = _toestanden;
-            dfa._startSymbolen = _startSymbolen;
+            dfa.eindToestanden = eind;
+            dfa.toestanden = toestanden;
+            dfa.startSymbolen = startSymbolen;
             return dfa;
         }
 
         public NDFA<T> Reverse()
         {
             NDFA<T> reversed = new NDFA<T>();
-            reversed._invoerSymbolen = _invoerSymbolen;//hetzelfde
-            reversed._startSymbolen = _eindToestanden;
-            reversed._eindToestanden = _startSymbolen;
-            reversed._toestanden = _toestanden;
-            foreach(Toestand<T> t in reversed._toestanden)
+            reversed.invoerSymbolen = invoerSymbolen;//hetzelfde
+            reversed.startSymbolen = eindToestanden;
+            reversed.eindToestanden = startSymbolen;
+            reversed.toestanden = toestanden;
+            foreach(Toestand<T> t in reversed.toestanden)
                 t.Reverse();
             return reversed ;
         }
@@ -48,7 +49,7 @@ namespace Eindopdracht.NDFAAndDFA
             {
                 return false;
             }
-            else if (this._eindToestanden == other._eindToestanden && this._invoerSymbolen == other._invoerSymbolen && this._startSymbolen == other._startSymbolen && this._toestanden == other._toestanden)
+            else if (this.eindToestanden == other.eindToestanden && this.invoerSymbolen == other.invoerSymbolen && this.startSymbolen == other.startSymbolen && this.toestanden == other.toestanden)
             {
                 return true;
             }

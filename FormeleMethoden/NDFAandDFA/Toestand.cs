@@ -8,35 +8,38 @@ namespace Eindopdracht.NDFAAndDFA
 {
     public class Toestand<T>
     {
-        public string _name;
-        public string _vorigeToestand;
-        public Tuple<string, T> _volgendeToestand; //naam volgende toestand met actie
+        public string naam;
+        public string vorigeToestand;
+        public Tuple<string, T> volgendeToestand; //naam volgende toestand met actie
 
-        public Toestand(string name, Tuple<string, T> volgendeToestand)
+        //constructor
+        public Toestand(string naam, Tuple<string, T> volgendeToestand)
         {
-            _name = name;
-            _volgendeToestand = volgendeToestand;
-            _vorigeToestand = name;
+            this.naam = naam;
+            this.volgendeToestand = volgendeToestand;
+            this.vorigeToestand = naam;
         }
 
         public void Reverse()
         {
-            string tempVorigeToestand = _vorigeToestand;
-            _vorigeToestand = _volgendeToestand.Item1;
-            _volgendeToestand = new Tuple<string,T>(tempVorigeToestand, _volgendeToestand.Item2);
-            _name = _vorigeToestand;
+            string tempVorigeToestand = vorigeToestand;
+            vorigeToestand = volgendeToestand.Item1;
+            volgendeToestand = new Tuple<string,T>(tempVorigeToestand, volgendeToestand.Item2);
+            naam = vorigeToestand;
         }
 
+        //Overschrijf de ToString methode om een leesbare output van de toestand weer te geven
         public override string ToString()
         {
-            if (string.IsNullOrEmpty(_volgendeToestand.Item2.ToString()))
-                return "Van toestand '" + _name + "' naar toestand: '" + _volgendeToestand.Item1 + "' met " + ReguliereExpressie.Expressie.EPSILON;
-            return "Van toestand '" + _name + "' naar toestand: '" + _volgendeToestand.Item1 + "' met " + _volgendeToestand.Item2.ToString();
+            if (string.IsNullOrEmpty(volgendeToestand.Item2.ToString()))
+                return "Van toestand '" + naam + "' naar toestand: '" + volgendeToestand.Item1 + "' met " + ReguliereExpressie.Expressie.EPSILON;
+            return "Van toestand '" + naam + "' naar toestand: '" + volgendeToestand.Item1 + "' met " + volgendeToestand.Item2.ToString();
         }
 
+        //Methode om te kijken de huidige toestand gelijk is aan een gegeven toestand
         public bool Equals(Toestand<T> other)
         {
-            if(this._name == other._name && this._volgendeToestand == other._volgendeToestand)
+            if(this.naam == other.naam && this.volgendeToestand == other.volgendeToestand)
             {
                 return true;
             }
@@ -44,6 +47,7 @@ namespace Eindopdracht.NDFAAndDFA
                 return false;
         }
 
+        //Maak een nieuwe toestand aan
         public static Toestand<char> CreateToestand(string s)
         {
             var letters = s.ToCharArray();
